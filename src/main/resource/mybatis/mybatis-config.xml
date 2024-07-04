@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 是否启用二级缓存（全局）。二级缓存是跨多个SQL会话共享的，主要用于缓存不经常变化的数据，以提高查询速度。如果你的应用需要对数据的实时性要求较高，请将此值设置为false -->
+        <setting name="cacheEnabled" value="false"/>
+        <!--  是否启用延迟加载。延迟加载是一种性能优化手段，它可以在需要时再加载关联的对象。当设置为true时，MyBatis将为需要延迟加载的对象创建一个代理对象，只有在实际访问该对象时才会加载关联数据 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 是否启用积极的延迟加载。当设置为false时，只有在调用get、set、equals、hashCode、toString方法时才会触发延迟加载。这可以防止在不需要关联数据时过早地加载它们 -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!-- 是否允许多个结果集从单个语句返回。某些数据库支持在单个查询中返回多个结果集，这个设置允许MyBatis处理这些结果集 -->
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <!-- 是否使用列标签（而非列名）作为结果集中列的名称。某些数据库驱动在处理结果集时，使用列标签作为列名可能更准确。建议保持true -->
+        <setting name="useColumnLabel" value="true"/>
+        <!-- 允许使用自定义的主键值(比如由程序生成的UUID 32位编码作为键值)，数据表的PK生成策略将被覆盖 -->
+        <!-- <setting name="useGeneratedKeys" value="true" /> -->
+        <!-- 设置自动映射行为。可以设置为NONE（不进行自动映射）、PARTIAL（只自动映射没有定义嵌套结果集映射的简单属性）或FULL（自动映射任何复杂的类型（包括嵌套的结果集）） -->
+        <setting name="autoMappingBehavior" value="FULL"/>
+        <!-- 对于批量更新操作缓存SQL以提高性能 -->
+        <!--         <setting name="defaultExecutorType" value="BATCH" />   -->
+        <!-- 设置SQL查询的默认超时（以毫秒为单位）。默认值为null（不设置超时）。这个设置可以防止长时间运行的查询消耗过多的资源。根据你的应用需求和性能指标来设置合适的超时值 -->
+        <setting name="defaultStatementTimeout" value="25000"/>
+    </settings>
+
+    <!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径 -->
+    <!-- <typeAliases>
+        <typeAlias alias="UserBean"
+            type="com.baozun.xx.model.User" />
+    </typeAliases> -->
+
+</configuration>

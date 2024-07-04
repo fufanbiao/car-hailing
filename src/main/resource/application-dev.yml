@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    nacos:
+      server-addr: localhost:8848  # Nacos地址
+
+
+logging:
+  config: classpath:log4j2-dev.xml

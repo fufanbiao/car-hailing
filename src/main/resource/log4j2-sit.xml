@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <properties>
+        <!-- 文件输出格式 -->
+        <property name="PATTERN">[%d{yyyy-MM-dd HH:mm:ss:SSS z}] %5p %l: TraceId-%X{X-B3-TraceId},SpanId-%X{X-B3-SpanId}.%m%n
+        </property>
+    </properties>
+
+    <appenders>
+        <Console name="CONSOLE" target="system_out">
+            <PatternLayout pattern="${PATTERN}"/>
+        </Console>
+        <!-- error -->
+        <RollingFile name="errorRollingFile" fileName="/service/logs/app/sit/apple-distributor/car-hailing/error.log"
+          filePattern="/service/logs/app/sit/apple-distributor/car-hailing/$${date:yyyy-MM}/%d{yyyy-MM-dd}.error.log">
+
+            <Policies>
+                <SizeBasedTriggeringPolicy size="500MB"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了20 -->
+            <DefaultRolloverStrategy max="20"/>
+            <ThresholdFilter level="error" onMatch="ACCEPT"
+              onMismatch="DENY"/>
+            <JsonLayout locationinfo="true" eventEol="true" compact="true" stacktraceAsString="true"
+              includeStacktrace="true">
+                <KeyValuePair key="timestamp" value="$${date:yyyy-MM-dd HH:mm:ss:SSS}"/>
+                <KeyValuePair key="project_name" value="apple-distributor"/>
+                <KeyValuePair key="X-B3-TraceId" value="$${ctx:X-B3-TraceId}"/>
+                <KeyValuePair key="X-B3-SpanId" value="$${ctx:X-B3-SpanId}"/>
+                <!--新增输出 TraceId-->
+                <KeyValuePair key="traceId" value="$${tracer:traceId:-}"/>
+                <!--新增输出 SpanID-->
+                <KeyValuePair key="spanId" value="$${tracer:spanId:-}"/>
+                <!--新增输出 SegmentId-->
+                <KeyValuePair key="segmentId" value="$${tracer:segmentId:-}"/>
+            </JsonLayout>
+        </RollingFile>
+
+        <!-- warn -->
+        <RollingFile name="warnRollingFile" fileName="/service/logs/app/sit/apple-distributor/car-hailing/warn.log"
+          filePattern="/service/logs/app/sit/apple-distributor/car-hailing/$${date:yyyy-MM}/%d{yyyy-MM-dd}.warn.log">
+
+            <Policies>
+                <SizeBasedTriggeringPolicy size="500MB"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了20 -->
+            <DefaultRolloverStrategy max="20"/>
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="DENY"
+                  onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="warn" onMatch="ACCEPT"
+                  onMismatch="DENY"/>
+            </Filters>
+            <JsonLayout locationinfo="true" eventEol="true" compact="true" stacktraceAsString="true"
+              includeStacktrace="true">
+                <KeyValuePair key="timestamp" value="$${date:yyyy-MM-dd HH:mm:ss:SSS}"/>
+                <KeyValuePair key="project_name" value="apple-distributor"/>
+                <KeyValuePair key="X-B3-TraceId" value="$${ctx:X-B3-TraceId}"/>
+                <KeyValuePair key="X-B3-SpanId" value="$${ctx:X-B3-SpanId}"/>
+                <!--新增输出 TraceId-->
+                <KeyValuePair key="traceId" value="$${tracer:traceId:-}"/>
+                <!--新增输出 SpanID-->
+                <KeyValuePair key="spanId" value="$${tracer:spanId:-}"/>
+                <!--新增输出 SegmentId-->
+                <KeyValuePair key="segmentId" value="$${tracer:segmentId:-}"/>
+            </JsonLayout>
+        </RollingFile>
+
+        <!-- info -->
+        <RollingFile name="infoRollingFile" fileName="/service/logs/app/sit/apple-distributor/car-hailing/info.log"
+          filePattern="/service/logs/app/sit/apple-distributor/car-hailing/$${date:yyyy-MM}/%d{yyyy-MM-dd}.info.log">
+
+            <Policies>
+                <SizeBasedTriggeringPolicy size="500MB"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了20 -->
+            <DefaultRolloverStrategy max="20"/>
+
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="DENY"
+                  onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="warn" onMatch="DENY"
+                  onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT"
+                  onMismatch="DENY"/>
+            </Filters>
+            <JsonLayout locationinfo="true" eventEol="true" compact="true" stacktraceAsString="true"
+              includeStacktrace="true">
+                <KeyValuePair key="timestamp" value="$${date:yyyy-MM-dd HH:mm:ss:SSS}"/>
+                <KeyValuePair key="project_name" value="apple-distributor"/>
+                <KeyValuePair key="X-B3-TraceId" value="$${ctx:X-B3-TraceId}"/>
+                <KeyValuePair key="X-B3-SpanId" value="$${ctx:X-B3-SpanId}"/>
+                <!--新增输出 TraceId-->
+                <KeyValuePair key="traceId" value="$${tracer:traceId:-}"/>
+                <!--新增输出 SpanID-->
+                <KeyValuePair key="spanId" value="$${tracer:spanId:-}"/>
+                <!--新增输出 SegmentId-->
+                <KeyValuePair key="segmentId" value="$${tracer:segmentId:-}"/>
+            </JsonLayout>
+        </RollingFile>
+
+        <!-- debug -->
+        <RollingFile name="debugRollingFile" fileName="/service/logs/app/sit/apple-distributor/car-hailing/debug.log"
+          filePattern="/service/logs/app/sit/apple-distributor/car-hailing/$${date:yyyy-MM}/%d{yyyy-MM-dd}.debug.log">
+
+            <Policies>
+                <SizeBasedTriggeringPolicy size="500MB"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了20 -->
+            <DefaultRolloverStrategy max="20"/>
+
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="DENY"
+                  onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="DENY"
+                  onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="debug" onMatch="ACCEPT"
+                  onMismatch="DENY"/>
+            </Filters>
+            <JsonLayout locationinfo="true" eventEol="true" compact="true" stacktraceAsString="true"
+              includeStacktrace="true">
+                <KeyValuePair key="timestamp" value="$${date:yyyy-MM-dd HH:mm:ss:SSS}"/>
+                <KeyValuePair key="project_name" value="apple-distributor"/>
+                <KeyValuePair key="X-B3-TraceId" value="$${ctx:X-B3-TraceId}"/>
+                <KeyValuePair key="X-B3-SpanId" value="$${ctx:X-B3-SpanId}"/>
+                <!--新增输出 TraceId-->
+                <KeyValuePair key="traceId" value="$${tracer:traceId:-}"/>
+                <!--新增输出 SpanID-->
+                <KeyValuePair key="spanId" value="$${tracer:spanId:-}"/>
+                <!--新增输出 SegmentId-->
+                <KeyValuePair key="segmentId" value="$${tracer:segmentId:-}"/>
+            </JsonLayout>
+        </RollingFile>
+
+    </appenders>
+
+    <loggers>
+
+        <logger name="com.baozun" level="info" additivity="true"/>
+        <logger name="RocketmqClient" level="warn" additivity="false"/>
+        <logger name="RocketmqRemoting" level="WARN" additivity="false"/>
+        <logger name="com.baozun.scm.baseservice" level="WARN" additivity="false"/>
+        <logger name="springfox.documentation.swagger" level="ERROR" additivity="false"/>
+        <logger name="com.alibaba.druid.filter.stat.StatFilter" level="WARN" additivity="false"/>
+
+
+        <!-- warn级别是为了去除mq监听的日志打印 -->
+        <root level="INFO">
+            <appenderref ref="CONSOLE"/>
+            <appenderref ref="errorRollingFile"/>
+            <appenderref ref="warnRollingFile"/>
+            <appenderref ref="infoRollingFile"/>
+            <appenderref ref="debugRollingFile"/>
+        </root>
+    </loggers>
+
+</configuration>
