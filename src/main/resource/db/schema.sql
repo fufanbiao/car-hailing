@@ -1,5 +1,0 @@
-CREATE TABLE IF NOT EXISTS t_user (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_name VARCHAR(50)NOT NULL,
-    user_type VARCHAR(50)NOT NULL
-);
