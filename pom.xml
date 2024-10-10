@@ -84,11 +84,6 @@
       <artifactId>spring-cloud-starter-gateway</artifactId>
     </dependency>
 
-    <!-- Other dependencies like web, actuator -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
 
     <!-- 配置中心 -->
     <dependency>
@@ -333,6 +328,12 @@
       <artifactId>lark-common</artifactId>
       <version>2.0.0</version>
     </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-oauth2-client</artifactId>
+        <version>2.4.1</version>
+      </dependency>
 
   </dependencies>
 
